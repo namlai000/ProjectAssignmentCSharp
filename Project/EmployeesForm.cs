@@ -47,6 +47,21 @@ namespace Project
             cbManager.ValueMember = "ID";
         }
 
+        void clickRow()
+        {
+            DataGridViewRow r = dataGridView1.SelectedRows[0];
+            txtId.Text = r.Cells[0].Value.ToString();
+            txtLastName.Text = r.Cells[1].Value.ToString();
+            txtFirstName.Text = r.Cells[2].Value.ToString();
+            cbTitle.Text = r.Cells[3].Value.ToString();
+
+            string cortesy = r.Cells[4].Value.ToString();
+            if (cortesy.Equals("Mr")) radMr.Checked = true;
+            else if (cortesy.Equals("Ms")) radMs.Checked = true;
+            else if (cortesy.Equals("Mrs")) radMrs.Checked = true;
+            else if (cortesy.Equals("Dr")) radDr.Checked = true;
+        }
+
         string[] GetAllCountries()
         {
             Dictionary<string, string> objDic = new Dictionary<string, string>();
@@ -67,7 +82,10 @@ namespace Project
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                clickRow();
+            }
         }
     }
 

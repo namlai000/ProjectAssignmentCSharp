@@ -57,6 +57,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="EmployeesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +77,15 @@
     </Compile>
     <Compile Include="MainProgram.Designer.cs">
       <DependentUpon>MainProgram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetail.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProjectModels.Context.cs">
@@ -86,6 +104,15 @@
       <DependentUpon>ProjectModels.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shipper.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="EmployeesForm.resx">
+      <DependentUpon>EmployeesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainProgram.resx">
       <DependentUpon>MainProgram.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +157,9 @@
       <DependentUpon>ProjectModels.edmx</DependentUpon>
       <LastGenOutput>ProjectModels.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

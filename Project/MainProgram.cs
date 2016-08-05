@@ -12,9 +12,25 @@ namespace Project
 {
     public partial class MainProgram : Form
     {
+        EmployeesForm empForm = null;
+
         public MainProgram()
         {
             InitializeComponent();
+            this.IsMdiContainer = true;
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (empForm == null)
+            {
+                empForm = new EmployeesForm();
+                empForm.MdiParent = this;
+                empForm.Show();
+            } else
+            {
+                empForm.Activate();
+            }
         }
     }
 }

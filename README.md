@@ -1,6 +1,6 @@
 # ProjectAssignmentCSharp
 # DO NOT DO ON THIS BRANCH
-# GOTO BRANCH EXPERIMENTS AND WORK ON THERE
+# CREATE YOUR OWN BRANCH AND WORK ON THERE
 
 Clone this project into your computer
 Create a local branch from master

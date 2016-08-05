@@ -8,3 +8,6 @@ then RIGHT CLICK you new branch and Publish
 after that you will work on NEW BRANCH (not the master)
 
 UPDATE 1: DATABASES has been added, you don't need to add entity for it anymore
+UPDATE 2: If you can not connect to the databases, open .app.config file, edit base on tutorial inside config file
+
+Happy Coding~

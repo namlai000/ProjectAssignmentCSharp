@@ -15,11 +15,36 @@ namespace Project
     public partial class EmployeesForm : Form
     {
         TSQLFundamentals2008Entities entity = new TSQLFundamentals2008Entities();
+        bool addNew = false;
+        bool update = false;
 
         public EmployeesForm()
         {
             InitializeComponent();
             loadData();
+            InitialButton();
+        }
+
+        void InitialButton()
+        {
+            if (addNew)
+            {
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+                btnAdd.Enabled = true;
+            } else
+            {
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+                btnAdd.Enabled = false;
+            }
+
+            if (update)
+            {
+                btnUpdate.Enabled = true;
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = true;
+            }
         }
 
         void loadData()
@@ -53,6 +78,9 @@ namespace Project
             cbManager.DataSource = list;
             cbManager.DisplayMember = "NAME";
             cbManager.ValueMember = "ID";
+
+            // Bind courtesy default
+            radMr.Checked = true;
         }
 
         SortedDictionary<string, string> getCountriesList()
@@ -131,12 +159,87 @@ namespace Project
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 clickRow();
+                update = true;
+                addNew = false;
+                InitialButton();
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        bool checkValid()
         {
-            MessageBox.Show(cbCountry.SelectedValue.ToString());
+            errorProvider1.Clear();
+            bool error = false;
+            if (txtLastName.Text.Equals("")) { errorProvider1.SetError(txtLastName, "No empty allow"); error = true; }
+            if (txtFirstName.Text.Equals("")) { errorProvider1.SetError(txtFirstName, "No empty allow"); error = true; }
+            if (cbTitle.Text.Equals("")) { errorProvider1.SetError(cbTitle, "No empty allow"); error = true; }
+            DateTime birth = dtpBirthdate.Value;
+            DateTime hire = dtpHiredate.Value;
+            if ((hire.Year - birth.Year) < 18) { errorProvider1.SetError(dtpBirthdate, "Employee must be older than 18"); error = true; }
+            if (txtaddress.Text.Equals("")) { errorProvider1.SetError(txtaddress, "No empty allow"); error = true; }
+            if (cbCity.Text.Equals("")) { errorProvider1.SetError(cbCity, "No empty allow"); error = true; }
+            if (!txtPhone.MaskCompleted) { errorProvider1.SetError(txtPhone, "Invalid phone"); error = true; }
+
+            if (error) return false;
+            return true;
+        }
+
+        void addData()
+        {
+            Employee emp = new Employee();
+            emp.lastname = txtLastName.Text;
+            emp.firstname = txtFirstName.Text;
+            emp.title = cbTitle.Text;
+
+            string titleofcortesy = null;
+            if (radMr.Checked) titleofcortesy = "Mr.";
+            else if (radMrs.Checked) titleofcortesy = "Mrs.";
+            else if (radMs.Checked) titleofcortesy = "Ms.";
+            else titleofcortesy = "Dr.";
+            emp.titleofcourtesy = titleofcortesy;
+
+            emp.birthdate = dtpBirthdate.Value;
+            emp.hiredate = dtpHiredate.Value;
+            emp.address = txtaddress.Text;
+            emp.city = cbCity.Text;
+            emp.region = cbRegion.Text;
+            emp.postalcode = txtPostalCode.Text;
+            emp.country = cbCountry.SelectedValue.ToString();
+            emp.phone = txtPhone.Text;
+
+            int id = int.Parse(cbManager.SelectedValue.ToString());
+            if (id != 0) emp.mgrid = id;
+
+            entity.Employees.Add(emp);
+            entity.SaveChanges();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (checkValid()) addData();
+            loadData();
+            addNew = false;
+            InitialButton();
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            addNew = true;
+            update = false;
+            InitialButton();
+            Reset.ResetAllControls(this);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            addNew = false;
+            update = false;
+            int id = int.Parse(txtId.Text);
+            Employee emp = entity.Employees.First(x => x.empid == id);
+            entity.Employees.Remove(emp);
+            entity.SaveChanges();
+            loadData();
+            Reset.ResetAllControls(this);
+            InitialButton();
         }
     }
 
@@ -156,5 +259,33 @@ namespace Project
 
         public int ID { get; set; }
         public string NAME { get; set; }
+    }
+
+    class Reset
+    {
+        public static void ResetAllControls(Control form)
+        {
+            foreach (Control control in form.Controls)
+            {
+                if (control is TextBox)
+                {
+                    TextBox textBox = (TextBox)control;
+                    textBox.Text = null;
+                }
+
+                if (control is MaskedTextBox)
+                {
+                    MaskedTextBox textBox = (MaskedTextBox)control;
+                    textBox.Text = null;
+                }
+
+                if (control is ComboBox)
+                {
+                    ComboBox comboBox = (ComboBox)control;
+                    if (comboBox.Items.Count > 0)
+                        comboBox.SelectedIndex = 0;
+                }
+            }
+        }
     }
 }

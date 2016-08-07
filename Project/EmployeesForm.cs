@@ -14,6 +14,8 @@ namespace Project
 {
     public partial class EmployeesForm : Form
     {
+        TSQLFundamentals2008Entities entity = new TSQLFundamentals2008Entities();
+
         public EmployeesForm()
         {
             InitializeComponent();
@@ -23,11 +25,12 @@ namespace Project
         void loadData()
         {
             // Load database
-            TSQLFundamentals2008Entities entity = new TSQLFundamentals2008Entities();
             dataGridView1.DataSource = entity.Employees.ToList();
 
             // Countries
-            cbCountry.DataSource = GetAllCountries();
+            cbCountry.DataSource = new BindingSource(getCountriesList(), null);
+            cbCountry.DisplayMember = "Key";
+            cbCountry.ValueMember = "Value";
 
             // Titles
             cbTitle.DataSource = entity.Employees.ToList().Select(emp => emp.title).Distinct().ToList();
@@ -42,9 +45,52 @@ namespace Project
             cbRegion.DisplayMember = "region";
 
             // Manager
-            cbManager.DataSource = entity.Database.SqlQuery<NAMES>("SELECT empid, (lastname + ' ' + firstname) AS NAME FROM HR.Employees").ToList();
+            List<Emp> list = entity.Database.SqlQuery<Emp>("SELECT empid AS ID, (lastname + ' ' + firstname) AS NAME FROM HR.Employees").ToList();
+            Emp no = new Emp();
+            no.ID = 0;
+            no.NAME = "NO MANAGER";
+            list.Insert(0, no);
+            cbManager.DataSource = list;
             cbManager.DisplayMember = "NAME";
             cbManager.ValueMember = "ID";
+        }
+
+        SortedDictionary<string, string> getCountriesList()
+        {
+            SortedDictionary<string, string> cultureList = new SortedDictionary<string, string>();
+            
+            CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
+
+            foreach (CultureInfo culture in cultures)
+            {
+                RegionInfo region = new RegionInfo(culture.LCID);
+
+                if (!(cultureList.Keys.Contains(region.EnglishName)))
+                {
+                    cultureList.Add(region.EnglishName, region.TwoLetterISORegionName);
+                }
+            }
+            
+            return cultureList;
+        }
+
+        string convertToEnglishName(string name)
+        {
+            CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
+
+            foreach (CultureInfo culture in cultures)
+            {
+                RegionInfo region = new RegionInfo(culture.LCID);
+                if (name.Length == 2)
+                {
+                    if (region.TwoLetterISORegionName.Equals(name)) return region.EnglishName;
+                } else
+                {
+                    if (region.ThreeLetterISORegionName.Equals(name)) return region.EnglishName;
+                }
+            }
+
+            return null;
         }
 
         void clickRow()
@@ -56,28 +102,28 @@ namespace Project
             cbTitle.Text = r.Cells[3].Value.ToString();
 
             string cortesy = r.Cells[4].Value.ToString();
-            if (cortesy.Equals("Mr")) radMr.Checked = true;
-            else if (cortesy.Equals("Ms")) radMs.Checked = true;
-            else if (cortesy.Equals("Mrs")) radMrs.Checked = true;
-            else if (cortesy.Equals("Dr")) radDr.Checked = true;
-        }
+            if (cortesy.Equals("Mr.")) radMr.Checked = true;
+            else if (cortesy.Equals("Ms.")) radMs.Checked = true;
+            else if (cortesy.Equals("Mrs.")) radMrs.Checked = true;
+            else if (cortesy.Equals("Dr.")) radDr.Checked = true;
 
-        string[] GetAllCountries()
-        {
-            Dictionary<string, string> objDic = new Dictionary<string, string>();
+            dtpBirthdate.Value = DateTime.Parse(r.Cells[5].Value.ToString());
+            dtpHiredate.Value = DateTime.Parse(r.Cells[6].Value.ToString());
+            txtaddress.Text = r.Cells[7].Value.ToString();
+            cbCity.Text = r.Cells[8].Value.ToString();
+            cbRegion.Text = r.Cells[9].Value == null ? "" : r.Cells[9].Value.ToString();
+            txtPostalCode.Text = r.Cells[10].Value == null ? "" : r.Cells[10].Value.ToString();
+            cbCountry.Text = convertToEnglishName(r.Cells[11].Value.ToString());
+            txtPhone.Text = r.Cells[12].Value.ToString();
 
-            foreach (CultureInfo ObjCultureInfo in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
+            int manager = r.Cells[13].Value == null ? 0 : int.Parse(r.Cells[13].Value.ToString());
+            string sql = string.Format("SELECT (lastname + ' ' + firstname) FROM HR.Employees WHERE empid={0}", manager);
+            List<string> managerName = entity.Database.SqlQuery<string>(sql).ToList();
+            cbManager.Text = "NO MANAGER";
+            foreach (string name in managerName)
             {
-                RegionInfo objRegionInfo = new RegionInfo(ObjCultureInfo.Name);
-                if (!objDic.ContainsKey(objRegionInfo.EnglishName))
-                {
-                    objDic.Add(objRegionInfo.EnglishName, objRegionInfo.TwoLetterISORegionName.ToLower());
-                }
+                cbManager.Text = name;
             }
-
-            var obj = objDic.OrderBy(p => p.Key);
-            var y = obj.Select(t => t.Key);
-            return y.ToArray();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -87,16 +133,28 @@ namespace Project
                 clickRow();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(cbCountry.SelectedValue.ToString());
+        }
     }
 
-    class NAMES
+
+    class Emp
     {
-        string id;
+        int id;
         string name;
 
-        public NAMES() { }
+        public Emp() { }
 
-        public string ID { get; set; }
+        public Emp(int id, string name)
+        {
+            this.id = id;
+            this.name = name;
+        }
+
+        public int ID { get; set; }
         public string NAME { get; set; }
     }
 }

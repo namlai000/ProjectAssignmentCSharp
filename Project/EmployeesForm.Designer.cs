@@ -55,11 +55,11 @@
             this.label11 = new System.Windows.Forms.Label();
             this.cbRegion = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.txtPostalCode = new System.Windows.Forms.MaskedTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.cbCountry = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.txtPhone = new System.Windows.Forms.MaskedTextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.cbManager = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
@@ -317,13 +317,13 @@
             this.label12.TabIndex = 26;
             this.label12.Text = "Postal Code";
             // 
-            // maskedTextBox1
+            // txtPostalCode
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(101, 526);
-            this.maskedTextBox1.Mask = "00000-9999";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox1.TabIndex = 27;
+            this.txtPostalCode.Location = new System.Drawing.Point(101, 526);
+            this.txtPostalCode.Mask = "00000-9999";
+            this.txtPostalCode.Name = "txtPostalCode";
+            this.txtPostalCode.Size = new System.Drawing.Size(100, 20);
+            this.txtPostalCode.TabIndex = 27;
             // 
             // label13
             // 
@@ -352,13 +352,13 @@
             this.label14.TabIndex = 30;
             this.label14.Text = "Phone";
             // 
-            // maskedTextBox2
+            // txtPhone
             // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(101, 601);
-            this.maskedTextBox2.Mask = "(+900) 000-000-0009";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(149, 20);
-            this.maskedTextBox2.TabIndex = 31;
+            this.txtPhone.Location = new System.Drawing.Point(101, 601);
+            this.txtPhone.Mask = "(+900) 000-000-0009";
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(149, 20);
+            this.txtPhone.TabIndex = 31;
             // 
             // label15
             // 
@@ -371,6 +371,7 @@
             // 
             // cbManager
             // 
+            this.cbManager.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbManager.FormattingEnabled = true;
             this.cbManager.Location = new System.Drawing.Point(101, 642);
             this.cbManager.Name = "cbManager";
@@ -384,11 +385,11 @@
             this.ClientSize = new System.Drawing.Size(965, 739);
             this.Controls.Add(this.cbManager);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.maskedTextBox2);
+            this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.cbCountry);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.txtPostalCode);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cbRegion);
             this.Controls.Add(this.label11);
@@ -451,11 +452,11 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cbRegion;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox txtPostalCode;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cbCountry;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        private System.Windows.Forms.MaskedTextBox txtPhone;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox cbManager;
     }

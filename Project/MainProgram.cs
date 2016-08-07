@@ -13,6 +13,7 @@ namespace Project
     public partial class MainProgram : Form
     {
         EmployeesForm empForm = null;
+        FrmOrders orderForm = null;
 
         public MainProgram()
         {
@@ -30,6 +31,20 @@ namespace Project
             } else
             {
                 empForm.Activate();
+            }
+        }
+
+        private void formOrdersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (orderForm == null)
+            {
+                orderForm = new FrmOrders();
+                orderForm.MdiParent = this;
+                orderForm.Show();
+            }
+            else
+            {
+                orderForm.Activate();
             }
         }
     }

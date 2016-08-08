@@ -201,8 +201,8 @@ namespace Project
             emp.hiredate = dtpHiredate.Value;
             emp.address = txtaddress.Text;
             emp.city = cbCity.Text;
-            emp.region = cbRegion.Text;
-            emp.postalcode = txtPostalCode.Text;
+            emp.region = string.IsNullOrEmpty(cbRegion.Text) ? null: cbRegion.Text;
+            emp.postalcode = string.IsNullOrEmpty(txtPostalCode.Text) ? null : txtPostalCode.Text;
             emp.country = cbCountry.SelectedValue.ToString();
             emp.phone = txtPhone.Text;
 
@@ -213,11 +213,53 @@ namespace Project
             entity.SaveChanges();
         }
 
+        void updateEmployee()
+        {
+            int id = int.Parse(txtId.Text);
+            Employee emp = entity.Employees.First(x => x.empid == id);
+
+            emp.lastname = txtLastName.Text;
+            emp.firstname = txtFirstName.Text;
+            emp.title = cbTitle.Text;
+
+            string titleofcortesy = null;
+            if (radMr.Checked) titleofcortesy = "Mr.";
+            else if (radMrs.Checked) titleofcortesy = "Mrs.";
+            else if (radMs.Checked) titleofcortesy = "Ms.";
+            else titleofcortesy = "Dr.";
+            emp.titleofcourtesy = titleofcortesy;
+
+            emp.birthdate = dtpBirthdate.Value;
+            emp.hiredate = dtpHiredate.Value;
+            emp.address = txtaddress.Text;
+            emp.city = cbCity.Text;
+            emp.region = string.IsNullOrEmpty(cbRegion.Text) ? null : cbRegion.Text;
+            emp.postalcode = string.IsNullOrEmpty(txtPostalCode.Text) ? null : txtPostalCode.Text;
+            emp.country = cbCountry.SelectedValue.ToString();
+            emp.phone = txtPhone.Text;
+
+            id = int.Parse(cbManager.SelectedValue.ToString());
+            if (id != 0) emp.mgrid = id;
+
+            entity.SaveChanges();
+        }
+
+        void deleteEmployee()
+        {
+            int id = int.Parse(txtId.Text);
+            Employee emp = entity.Employees.First(x => x.empid == id);
+            entity.Employees.Remove(emp);
+            entity.SaveChanges();
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (checkValid()) addData();
+            if (checkValid())
+            {
+                addData();
+                addNew = false;
+            }
             loadData();
-            addNew = false;
             InitialButton();
         }
 
@@ -231,15 +273,31 @@ namespace Project
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            deleteEmployee();
             addNew = false;
             update = false;
-            int id = int.Parse(txtId.Text);
-            Employee emp = entity.Employees.First(x => x.empid == id);
-            entity.Employees.Remove(emp);
-            entity.SaveChanges();
             loadData();
             Reset.ResetAllControls(this);
             InitialButton();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (checkValid())
+            {
+                updateEmployee();
+                addNew = false;
+                update = false;
+            }
+            loadData();
+            InitialButton();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string sql = string.Format("SELECT * FROM HR.Employees WHERE lastname LIKE '%{0}%' OR firstname LIKE '%{0}%'", txtSearch.Text);
+            List <Employee> list = entity.Database.SqlQuery<Employee>(sql).ToList();
+            dataGridView1.DataSource = list;
         }
     }
 

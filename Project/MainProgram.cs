@@ -34,7 +34,7 @@ namespace Project
             }
         }
 
-        private void formOrdersToolStripMenuItem_Click(object sender, EventArgs e)
+        private void formOrdersToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             if (orderForm == null)
             {

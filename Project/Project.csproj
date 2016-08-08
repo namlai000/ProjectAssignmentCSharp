@@ -58,13 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
+      <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
+      <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
+      <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EmployeesForm.cs">
       <SubType>Form</SubType>
@@ -85,36 +85,36 @@
       <DependentUpon>MainProgram.cs</DependentUpon>
     </Compile>
     <Compile Include="Order.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
+      <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderDetail.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
+      <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
+      <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectModels.Context.cs">
+    <Compile Include="ProjectModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectModels.Context.tt</DependentUpon>
+      <DependentUpon>ProjectModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProjectModels.cs">
+    <Compile Include="ProjectModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectModels.tt</DependentUpon>
+      <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProjectModels.Designer.cs">
+    <Compile Include="ProjectModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectModels.edmx</DependentUpon>
+      <DependentUpon>ProjectModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shipper.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
+      <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Supplier.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
+      <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="EmployeesForm.resx">
       <DependentUpon>EmployeesForm.cs</DependentUpon>
@@ -131,13 +131,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="ProjectModels.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ProjectModels.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <None Include="App.Config" />
     <None Include="packages.config" />
-    <None Include="ProjectModels.edmx.diagram">
-      <DependentUpon>ProjectModels.edmx</DependentUpon>
+    <EntityDeploy Include="ProjectModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ProjectModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ProjectModel.edmx.diagram">
+      <DependentUpon>ProjectModel.edmx</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -150,22 +151,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ProjectModels.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProjectModels.edmx</DependentUpon>
-      <LastGenOutput>ProjectModels.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ProjectModels.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProjectModels.edmx</DependentUpon>
-      <LastGenOutput>ProjectModels.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ProjectModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProjectModel.edmx</DependentUpon>
+      <LastGenOutput>ProjectModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ProjectModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProjectModel.edmx</DependentUpon>
+      <LastGenOutput>ProjectModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

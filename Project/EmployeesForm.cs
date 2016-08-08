@@ -81,6 +81,14 @@ namespace Project
 
             // Bind courtesy default
             radMr.Checked = true;
+
+            // Filter
+            cbFilter.Items.Clear();
+            foreach (DataGridViewColumn data in dataGridView1.Columns)
+            {
+                cbFilter.Items.Add(data.Name);
+            }
+            cbFilter.SelectedIndex = 0;
         }
 
         SortedDictionary<string, string> getCountriesList()
@@ -295,7 +303,7 @@ namespace Project
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            string sql = string.Format("SELECT * FROM HR.Employees WHERE lastname LIKE '%{0}%' OR firstname LIKE '%{0}%'", txtSearch.Text);
+            string sql = string.Format("SELECT * FROM HR.Employees WHERE {0} LIKE '%{1}%'", cbFilter.Text ,txtSearch.Text);
             List <Employee> list = entity.Database.SqlQuery<Employee>(sql).ToList();
             dataGridView1.DataSource = list;
         }

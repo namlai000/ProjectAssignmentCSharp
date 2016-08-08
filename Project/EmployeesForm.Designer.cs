@@ -69,6 +69,8 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbFilter = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -434,6 +436,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbFilter);
+            this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.txtSearch);
             this.groupBox2.Location = new System.Drawing.Point(346, 14);
             this.groupBox2.Name = "groupBox2";
@@ -441,6 +445,24 @@
             this.groupBox2.TabIndex = 38;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search";
+            // 
+            // cbFilter
+            // 
+            this.cbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFilter.FormattingEnabled = true;
+            this.cbFilter.Location = new System.Drawing.Point(32, 44);
+            this.cbFilter.Name = "cbFilter";
+            this.cbFilter.Size = new System.Drawing.Size(121, 21);
+            this.cbFilter.TabIndex = 2;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(7, 47);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(19, 13);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "By";
             // 
             // txtSearch
             // 
@@ -546,5 +568,7 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cbFilter;
     }
 }

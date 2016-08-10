@@ -177,14 +177,26 @@ namespace Project
         {
             errorProvider1.Clear();
             bool error = false;
+
             if (txtLastName.Text.Equals("")) { errorProvider1.SetError(txtLastName, "No empty allow"); error = true; }
+            else if (txtLastName.Text.Length > 20) { errorProvider1.SetError(txtLastName, "Length must shorter than 20"); error = true; }
+
             if (txtFirstName.Text.Equals("")) { errorProvider1.SetError(txtFirstName, "No empty allow"); error = true; }
+            else if (txtFirstName.Text.Length > 20) { errorProvider1.SetError(txtFirstName, "Length must shorter than 20"); error = true; }
+
             if (cbTitle.Text.Equals("")) { errorProvider1.SetError(cbTitle, "No empty allow"); error = true; }
+            if (cbTitle.Text.Length > 30) { errorProvider1.SetError(cbTitle, "Length must shorter than 30"); error = true; }
+
             DateTime birth = dtpBirthdate.Value;
             DateTime hire = dtpHiredate.Value;
             if ((hire.Year - birth.Year) < 18) { errorProvider1.SetError(dtpBirthdate, "Employee must be older than 18"); error = true; }
+
             if (txtaddress.Text.Equals("")) { errorProvider1.SetError(txtaddress, "No empty allow"); error = true; }
+            else if (txtaddress.Text.Length > 20) { errorProvider1.SetError(txtaddress, "Length must shorter than 60"); error = true; }
+
             if (cbCity.Text.Equals("")) { errorProvider1.SetError(cbCity, "No empty allow"); error = true; }
+            else if (cbCity.Text.Length > 15) { errorProvider1.SetError(cbCity, "Length must shorter than 15"); error = true; }
+
             if (!txtPhone.MaskCompleted) { errorProvider1.SetError(txtPhone, "Invalid phone"); error = true; }
 
             if (error) return false;

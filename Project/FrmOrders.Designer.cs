@@ -61,11 +61,15 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label15 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnSearch = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtSearchValue = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -336,21 +340,12 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(417, 64);
+            this.dataGridView1.Location = new System.Drawing.Point(423, 120);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(539, 399);
             this.dataGridView1.TabIndex = 31;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(417, 22);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(259, 33);
-            this.label15.TabIndex = 32;
-            this.label15.Text = "Orders Information";
             // 
             // errorProvider1
             // 
@@ -358,21 +353,64 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(39, 440);
+            this.btnSearch.Location = new System.Drawing.Point(302, 52);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(271, 23);
+            this.btnSearch.Size = new System.Drawing.Size(70, 22);
             this.btnSearch.TabIndex = 33;
-            this.btnSearch.Text = "Search Orders";
+            this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.btnSearch);
+            this.groupBox1.Controls.Add(this.txtSearchValue);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Location = new System.Drawing.Point(423, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(539, 94);
+            this.groupBox1.TabIndex = 34;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Search";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Search by Order ID",
+            "Search by Customer ID",
+            "Search by Employee ID"});
+            this.comboBox1.Location = new System.Drawing.Point(7, 20);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(289, 21);
+            this.comboBox1.TabIndex = 2;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // txtSearchValue
+            // 
+            this.txtSearchValue.Location = new System.Drawing.Point(89, 54);
+            this.txtSearchValue.Name = "txtSearchValue";
+            this.txtSearchValue.Size = new System.Drawing.Size(207, 20);
+            this.txtSearchValue.TabIndex = 1;
+            this.txtSearchValue.TextChanged += new System.EventHandler(this.txtSearchValue_TextChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(7, 56);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(76, 16);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Search box";
             // 
             // FrmOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 522);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.label15);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnRemove);
@@ -407,8 +445,11 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmOrders";
             this.Text = "FrmOrders";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmOrders_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -448,8 +489,11 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtSearchValue;
     }
 }

@@ -25,6 +25,7 @@ namespace Project
             loadCustomerID();
             loadEmployeeID();
             loadShipperID();
+            loadSearch();
         }
 
         private void label12_Click(object sender, EventArgs e)
@@ -53,9 +54,19 @@ namespace Project
                 errorProvider1.SetError(txtShipAddress,"Ship address cannot be empty");
                 ierror = true;
             }
+            else if (txtShipAddress.Text.Trim().Length > 60)
+            {
+                errorProvider1.SetError(txtShipAddress, "Ship address must be less than 60 characters");
+                ierror = true;
+            }
             if (txtShipCity.Text.Trim().Length == 0)
             {
                 errorProvider1.SetError(txtShipCity, "Ship city cannot be empty");
+                ierror = true;
+            }
+            else if (txtShipCity.Text.Trim().Length > 15)
+            {
+                errorProvider1.SetError(txtShipCity, "Ship city must be less than 15 character");
                 ierror = true;
             }
             if (txtShipName.Text.Trim().Length == 0)
@@ -63,9 +74,19 @@ namespace Project
                 errorProvider1.SetError(txtShipName, "Ship name cannot be empty");
                 ierror = true;
             }
+            else if (txtShipName.Text.Trim().Length > 40)
+            {
+                errorProvider1.SetError(txtShipName, "Ship name must be less than 40 characters");
+                ierror = true;
+            }
             if (txtShipRegion.Text.Trim().Length == 0)
             {
                 errorProvider1.SetError(txtShipRegion, "Ship Region cannot be empty");
+                ierror = true;
+            }
+            else if (txtShipRegion.Text.Trim().Length > 15)
+            {
+                errorProvider1.SetError(txtShipRegion, "Ship region must be less than 15 character");
                 ierror = true;
             }
             if (mtxtPostalCode.MaskCompleted == false)
@@ -137,20 +158,13 @@ namespace Project
             }
             else
             {
-                bool finished = AddnewOrder();
-                if (finished == true)
-                {
-                    loadtable();
-                    MessageBox.Show("Added successfully");
-                }
-                else
-                {
-                    MessageBox.Show("This order existed");
-                }
+                AddnewOrder();
+                loadtable();
+                MessageBox.Show("Added successful");
             }
 
         }
-        bool AddnewOrder()
+        void AddnewOrder()
         {
                 Order order = new Order();
                 //order.orderid = int.Parse(cbOrderID.Text);
@@ -167,16 +181,16 @@ namespace Project
                 order.shipname = txtShipName.Text;
                 order.shipaddress = txtShipAddress.Text;
                 order.shippostalcode = mtxtPostalCode.Text;
-                foreach (Order o in entity.Orders)
-                {
-                    if (o.orderid == order.orderid)
-                    {
-                        return false;
-                    }
-                }  
+                //foreach (Order o in entity.Orders)
+                //{
+                //    if (o.orderid == order.orderid)
+                //    {
+                //        return false;
+                //    }
+                //}  
                 entity.Orders.Add(order);
                 entity.SaveChanges();
-                return true;         
+                //return true;         
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -217,6 +231,7 @@ namespace Project
                 try
                 {
                     UpdateOrders();
+                    loadtable();
                     MessageBox.Show("Update successful"); 
                 }
                 catch(Exception ex)
@@ -251,6 +266,8 @@ namespace Project
             tmp.shipname = txtShipName.Text;
             tmp.shipaddress = txtShipAddress.Text;
             tmp.shippostalcode = mtxtPostalCode.Text;
+            entity.SaveChanges();
+            
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -259,9 +276,9 @@ namespace Project
             {
                 DateTime dt;
                 DataGridViewRow r = dataGridView1.SelectedRows[0];
-                cbOrderID.SelectedItem = r.Cells[0].Value;
-                cbCustomerID.SelectedItem = r.Cells[1].Value;
-                cbEmployeeID.SelectedItem = r.Cells[2].Value;
+                cbOrderID.Text = r.Cells[0].Value.ToString();
+                cbCustomerID.Text = r.Cells[1].Value.ToString();
+                cbEmployeeID.Text = r.Cells[2].Value.ToString();
                 DateTime.TryParse(r.Cells[3].Value.ToString(),out dt);
                 dtpOrderDate.Value = dt;
                 DateTime.TryParse(r.Cells[4].Value.ToString(), out dt);
@@ -271,7 +288,7 @@ namespace Project
                 cbShipperID.SelectedItem = r.Cells[6].Value;
                 txtFreight.Text = r.Cells[7].Value.ToString();
                 txtShipName.Text = r.Cells[8].Value.ToString();
-                txtShipAddress.Text = r.Cells[9].ToString();
+                txtShipAddress.Text = r.Cells[9].Value.ToString();
                 txtShipCity.Text = r.Cells[10].Value.ToString();
                 txtShipRegion.Text = r.Cells[11].Value.ToString();
                 mtxtPostalCode.Text = r.Cells[12].Value.ToString();
@@ -282,8 +299,49 @@ namespace Project
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            //string sql = string.Format("SELECT * FROM Sales.Order WHERE {0} LIKE '%{1}%'", comboBox1.ValueMember, txtSearchValue.Text);
+            //List<Order> list = entity.Database.SqlQuery<Order>(sql).ToList();
+            //dataGridView1.DataSource = list;
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
 
+        private void txtSearchValue_TextChanged(object sender, EventArgs e)
+        {
+            string sql = string.Format("SELECT * FROM Sales.Orders WHERE {0} LIKE '%{1}%'", comboBox1.ValueMember, txtSearchValue.Text);
+            List<Order> list = entity.Database.SqlQuery<Order>(sql).ToList();
+            dataGridView1.DataSource = list;
+        }
+        void loadSearch()
+        {
+            
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 0)
+            {
+                comboBox1.ValueMember = "orderid";
+            }
+            if (comboBox1.SelectedIndex == 1)
+            {
+                comboBox1.ValueMember = "custid";
+            }
+            if (comboBox1.SelectedIndex == 2)
+            {
+                comboBox1.ValueMember = "empid";
+            }
+        }
+
+        private void FrmOrders_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MainProgram Parent = (MainProgram)this.MdiParent;
+            Parent.orderForm = null;
+        }
+        //        Search by Order ID
+        //Search by Customer ID
+        //Search by Employee ID
     }
 }

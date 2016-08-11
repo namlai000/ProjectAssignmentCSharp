@@ -319,6 +319,12 @@ namespace Project
             List <Employee> list = entity.Database.SqlQuery<Employee>(sql).ToList();
             dataGridView1.DataSource = list;
         }
+
+        private void EmployeesForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MainProgram Parent = (MainProgram)this.MdiParent;
+            Parent.empForm = null;
+        }
     }
 
 

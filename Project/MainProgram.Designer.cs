@@ -33,6 +33,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +66,8 @@
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.formOrdersToolStripMenuItem});
+            this.formOrdersToolStripMenuItem,
+            this.customersToolStripMenuItem});
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
             this.salesToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.salesToolStripMenuItem.Text = "Sales";
@@ -74,8 +76,15 @@
             // 
             this.formOrdersToolStripMenuItem.Name = "formOrdersToolStripMenuItem";
             this.formOrdersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.formOrdersToolStripMenuItem.Text = "Form Orders";
+            this.formOrdersToolStripMenuItem.Text = "Orders";
             this.formOrdersToolStripMenuItem.Click += new System.EventHandler(this.formOrdersToolStripMenuItem_Click_1);
+            // 
+            // customersToolStripMenuItem
+            // 
+            this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
+            this.customersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.customersToolStripMenuItem.Text = "Customers";
+            this.customersToolStripMenuItem.Click += new System.EventHandler(this.customersToolStripMenuItem_Click);
             // 
             // MainProgram
             // 
@@ -101,6 +110,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formOrdersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
     }
 }
 

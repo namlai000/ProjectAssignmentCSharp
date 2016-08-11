@@ -514,6 +514,7 @@
             this.Controls.Add(this.label1);
             this.Name = "EmployeesForm";
             this.Text = "Employees";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeesForm_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

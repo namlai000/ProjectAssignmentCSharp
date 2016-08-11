@@ -12,8 +12,9 @@ namespace Project
 {
     public partial class MainProgram : Form
     {
-        EmployeesForm empForm = null;
-        FrmOrders orderForm = null;
+        public EmployeesForm empForm = null;
+        public FrmOrders orderForm = null;
+        public FrmCustomer customerForm = null;
 
         public MainProgram()
         {
@@ -45,6 +46,20 @@ namespace Project
             else
             {
                 orderForm.Activate();
+            }
+        }
+
+        private void customersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (customerForm == null)
+            {
+                customerForm = new FrmCustomer();
+                customerForm.MdiParent = this;
+                customerForm.Show();
+            }
+            else
+            {
+                customerForm.Activate();
             }
         }
     }

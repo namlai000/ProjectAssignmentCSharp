@@ -43,6 +43,8 @@ namespace Project
         void loadTable()
         {
             dataGridView1.DataSource = entity.Customers.ToList();
+            dataGridView1.Columns["Orders"].Visible = false;
+
         }
         void loadCompName()
         {

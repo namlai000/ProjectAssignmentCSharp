@@ -51,6 +51,9 @@ namespace Project
         {
             // Load database
             dataGridView1.DataSource = entity.Employees.ToList();
+            dataGridView1.Columns["Employees1"].Visible = false;
+            dataGridView1.Columns["Employee1"].Visible = false;
+            dataGridView1.Columns["Orders"].Visible = false;
 
             // Countries
             cbCountry.DataSource = new BindingSource(getCountriesList(), null);

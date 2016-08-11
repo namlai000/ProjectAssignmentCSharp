@@ -128,6 +128,10 @@ namespace Project
                 }
             }
             dataGridView1.DataSource = entity.Orders.ToList();
+            dataGridView1.Columns["Employee"].Visible = false;
+            dataGridView1.Columns["Customer"].Visible = false;
+            dataGridView1.Columns["OrderDetails"].Visible = false;
+            dataGridView1.Columns["Shipper"].Visible = false;
         }
         void loadOrderID()
         {

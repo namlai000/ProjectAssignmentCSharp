@@ -30,21 +30,14 @@ namespace Project
             }
             loadTable();
             cbCountry.DataSource = getCountryList();
-            loadCustomerID();
             loadCompName();
             loadtitle();
 
         }
-        void loadCustomerID()
-        {
-            cbCustID.DataSource = entity.Customers.ToList();
-            cbCustID.DisplayMember = "custID";
-        }
+        
         void loadTable()
         {
             dataGridView1.DataSource = entity.Customers.ToList();
-            dataGridView1.Columns["Orders"].Visible = false;
-
         }
         void loadCompName()
         {
@@ -196,7 +189,6 @@ namespace Project
         void AddNewCustomer()
         {
             Customer c = new Customer();
-            c.custid = int.Parse(cbCustID.Text);
             c.companyname = cbCompanyName.Text;
             c.contactname = txtContactName.Text;
             c.contacttitle = cbContactTitle.Text;
@@ -277,7 +269,7 @@ namespace Project
                     tmp = tmp1;
                 }
             }
-            tmp.custid = int.Parse(cbCustID.Text);
+
             tmp.companyname = cbCompanyName.Text;
             tmp.contactname = txtContactName.Text;
             tmp.contacttitle = cbContactTitle.Text;
@@ -327,11 +319,7 @@ namespace Project
             List<Customer> list = entity.Database.SqlQuery<Customer>(sql).ToList();
             dataGridView1.DataSource = list;
         }
-
-        private void FrmCustomer_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            MainProgram Parent = (MainProgram)this.MdiParent;
-            Parent.customerForm = null;
-        }
+        
     }
+    
 }

@@ -61,7 +61,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.txtsearch = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.cbCustID = new System.Windows.Forms.ComboBox();
+            this.cbCustID = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -350,12 +350,12 @@
             // 
             // cbCustID
             // 
-            this.cbCustID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCustID.FormattingEnabled = true;
-            this.cbCustID.Location = new System.Drawing.Point(100, 166);
+            this.cbCustID.AutoSize = true;
+            this.cbCustID.Location = new System.Drawing.Point(100, 175);
             this.cbCustID.Name = "cbCustID";
-            this.cbCustID.Size = new System.Drawing.Size(121, 21);
+            this.cbCustID.Size = new System.Drawing.Size(13, 13);
             this.cbCustID.TabIndex = 29;
+            this.cbCustID.Text = "0";
             // 
             // FrmCustomer
             // 
@@ -393,7 +393,6 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "FrmCustomer";
             this.Text = "Customer Info";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCustomer_FormClosing);
             this.Load += new System.EventHandler(this.FrmCustomer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -438,6 +437,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtsearch;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox cbCustID;
+        private System.Windows.Forms.Label cbCustID;
     }
 }

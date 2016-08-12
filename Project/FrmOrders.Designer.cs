@@ -62,11 +62,11 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.txtSearchValue = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -86,18 +86,18 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(31, 49);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.Size = new System.Drawing.Size(54, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Customer ID";
+            this.label2.Text = "Customer ";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(31, 76);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.Size = new System.Drawing.Size(56, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Employee ID";
+            this.label3.Text = "Employee ";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
@@ -132,9 +132,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(31, 181);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(57, 13);
+            this.label7.Size = new System.Drawing.Size(46, 13);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Shipper ID";
+            this.label7.Text = "Shipper ";
             // 
             // label8
             // 
@@ -211,6 +211,7 @@
             // 
             // cbCustomerID
             // 
+            this.cbCustomerID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCustomerID.FormattingEnabled = true;
             this.cbCustomerID.Location = new System.Drawing.Point(127, 40);
             this.cbCustomerID.Name = "cbCustomerID";
@@ -219,11 +220,13 @@
             // 
             // cbEmployeeID
             // 
+            this.cbEmployeeID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEmployeeID.FormattingEnabled = true;
             this.cbEmployeeID.Location = new System.Drawing.Point(127, 67);
             this.cbEmployeeID.Name = "cbEmployeeID";
             this.cbEmployeeID.Size = new System.Drawing.Size(121, 21);
             this.cbEmployeeID.TabIndex = 16;
+            this.cbEmployeeID.SelectedIndexChanged += new System.EventHandler(this.cbEmployeeID_SelectedIndexChanged);
             // 
             // dtpOrderDate
             // 
@@ -351,20 +354,9 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(302, 52);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(70, 22);
-            this.btnSearch.TabIndex = 33;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.txtSearchValue);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Location = new System.Drawing.Point(423, 13);
@@ -405,11 +397,22 @@
             this.label15.TabIndex = 0;
             this.label15.Text = "Search box";
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(127, 442);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(81, 23);
+            this.btnReset.TabIndex = 35;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // FrmOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 522);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnUpdate);
@@ -445,7 +448,6 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmOrders";
             this.Text = "FrmOrders";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmOrders_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -490,10 +492,10 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox txtSearchValue;
+        private System.Windows.Forms.Button btnReset;
     }
 }

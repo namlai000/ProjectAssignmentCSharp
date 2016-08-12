@@ -140,18 +140,23 @@ namespace Project
         }
         void loadCustomerID()
         {
-            cbCustomerID.DataSource = entity.Customers.ToList();
-            cbCustomerID.DisplayMember = "CustID";
+            cbCustomerID.DataSource = entity.Database.SqlQuery<cust>("SELECT contactname AS custname, custid AS id From Sales.Customers").ToList();
+            //cbCustomerID.DataSource = entity.Customers.ToList();
+            cbCustomerID.DisplayMember = "CUSTNAME";
+            cbCustomerID.ValueMember = "ID";
         }
         void loadEmployeeID()
         {
-            cbEmployeeID.DataSource = entity.Employees.ToList();
-            cbEmployeeID.DisplayMember = "EmpID";
+            cbEmployeeID.DataSource = entity.Database.SqlQuery<employ>("SELECT (lastname + ' ' + firstname) AS name, empid AS id FROM HR.EMployees").ToList();
+            //cbEmployeeID.DataSource = entity.Employees.ToList();
+            cbEmployeeID.DisplayMember = "name";
+            cbEmployeeID.ValueMember = "id";
         }
         void loadShipperID()
         {
-            cbShipperID.DataSource = entity.Shippers.ToList();
-            cbShipperID.DisplayMember = "ShipperID";
+            cbShipperID.DataSource = entity.Database.SqlQuery<shipp>("SELECT (companyname) AS shippname, shipperid AS id FROM Sales.Shippers").ToList();
+            cbShipperID.DisplayMember = "Shippname";
+            cbShipperID.ValueMember = "id";
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -174,7 +179,7 @@ namespace Project
                 //order.orderid = int.Parse(cbOrderID.Text);
                 order.custid = int.Parse(cbCustomerID.Text);
                 order.empid = int.Parse(cbEmployeeID.Text);
-                order.freight = int.Parse(txtFreight.Text);
+                order.freight = decimal.Parse(txtFreight.Text);
                 order.orderdate = dtpOrderDate.Value;
                 order.requireddate = dtpReqDate.Value;
                 order.shippeddate = dtpShippedDate.Value;
@@ -339,13 +344,69 @@ namespace Project
             }
         }
 
-        private void FrmOrders_FormClosing(object sender, FormClosingEventArgs e)
+        private void btnReset_Click(object sender, EventArgs e)
         {
-            MainProgram Parent = (MainProgram)this.MdiParent;
-            Parent.orderForm = null;
+            ResetAll();
         }
-        //        Search by Order ID
-        //Search by Customer ID
-        //Search by Employee ID
+        void ResetAll()
+        {
+            cbCustomerID.Text = "";
+            cbEmployeeID.Text = "";
+            dtpOrderDate.ResetText();
+            dtpReqDate.ResetText();
+            dtpShippedDate.ResetText();
+            cbShipperID.ResetText();
+            txtFreight.ResetText();
+            txtShipName.ResetText();
+            txtShipAddress.ResetText();
+            txtShipCity.ResetText();
+            txtShipRegion.ResetText();
+            mtxtPostalCode.ResetText();
+            cbShipCountry.ResetText();
+        }
+
+        private void cbEmployeeID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+//        Search by Order ID
+//Search by Customer ID
+//Search by Employee ID
+    }
+
+    class employ
+    {
+        int id;
+        string name;
+
+        public employ() { }
+
+        public int ID { get; set; }
+        public string NAME { get; set; }
+    }
+    class cust
+    {
+        int id;
+        string custname;
+        public cust()
+        {
+
+        }
+        public int ID { get; set; }
+        public string CUSTNAME { get; set; }
+    }
+    class shipp
+    {
+        int id;
+        string shippname;
+        public shipp()
+        {
+
+        }
+        public int ID { get; set; }
+        public string SHIPPNAME
+        {
+            get; set;
+        }
     }
 }

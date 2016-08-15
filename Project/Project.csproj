@@ -78,6 +78,12 @@
     <Compile Include="FrmProduct.designer.cs">
       <DependentUpon>FrmProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSearchResultSuppliers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSearchResultSuppliers.designer.cs">
+      <DependentUpon>FormSearchResultSuppliers.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,11 +140,20 @@
     <Compile Include="Supplier.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FrmSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSupplier.designer.cs">
+      <DependentUpon>FrmSupplier.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="EmployeesForm.resx">
       <DependentUpon>EmployeesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProduct.resx">
       <DependentUpon>FrmProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSearchResultSuppliers.resx">
+      <DependentUpon>FormSearchResultSuppliers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCustomer.resx">
       <DependentUpon>FrmCustomer.cs</DependentUpon>
@@ -160,6 +175,9 @@
     </Compile>
     <EmbeddedResource Include="SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSupplier.resx">
+      <DependentUpon>FrmSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.Config" />
     <None Include="packages.config" />

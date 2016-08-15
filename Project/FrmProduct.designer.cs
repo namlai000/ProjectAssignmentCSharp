@@ -44,12 +44,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.productidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supplieridDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitpriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.discontinuedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.productsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.lbID = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -115,16 +109,6 @@
             this.label6.Size = new System.Drawing.Size(69, 13);
             this.label6.TabIndex = 5;
             this.label6.Text = "Discontinued";
-            // 
-            // tSQLFundamentals2008DataSet
-            // 
-            // 
-            // productsBindingSource
-            // 
-            this.productsBindingSource.DataMember = "Products";
-            // 
-            // productsTableAdapter
-            // 
             // 
             // txtName
             // 
@@ -203,60 +187,12 @@
             // 
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.productidDataGridViewTextBoxColumn,
-            this.productnameDataGridViewTextBoxColumn,
-            this.supplieridDataGridViewTextBoxColumn,
-            this.categoryidDataGridViewTextBoxColumn,
-            this.unitpriceDataGridViewTextBoxColumn,
-            this.discontinuedDataGridViewCheckBoxColumn});
             this.dataGridView1.DataSource = this.productsBindingSource1;
             this.dataGridView1.Location = new System.Drawing.Point(414, 19);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(650, 471);
             this.dataGridView1.TabIndex = 16;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            // 
-            // productidDataGridViewTextBoxColumn
-            // 
-            this.productidDataGridViewTextBoxColumn.DataPropertyName = "productid";
-            this.productidDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.productidDataGridViewTextBoxColumn.Name = "productidDataGridViewTextBoxColumn";
-            this.productidDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // productnameDataGridViewTextBoxColumn
-            // 
-            this.productnameDataGridViewTextBoxColumn.DataPropertyName = "productname";
-            this.productnameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.productnameDataGridViewTextBoxColumn.Name = "productnameDataGridViewTextBoxColumn";
-            // 
-            // supplieridDataGridViewTextBoxColumn
-            // 
-            this.supplieridDataGridViewTextBoxColumn.DataPropertyName = "supplierid";
-            this.supplieridDataGridViewTextBoxColumn.HeaderText = "Supplier ID";
-            this.supplieridDataGridViewTextBoxColumn.Name = "supplieridDataGridViewTextBoxColumn";
-            // 
-            // categoryidDataGridViewTextBoxColumn
-            // 
-            this.categoryidDataGridViewTextBoxColumn.DataPropertyName = "categoryid";
-            this.categoryidDataGridViewTextBoxColumn.HeaderText = "Category ID";
-            this.categoryidDataGridViewTextBoxColumn.Name = "categoryidDataGridViewTextBoxColumn";
-            // 
-            // unitpriceDataGridViewTextBoxColumn
-            // 
-            this.unitpriceDataGridViewTextBoxColumn.DataPropertyName = "unitprice";
-            this.unitpriceDataGridViewTextBoxColumn.HeaderText = "Price";
-            this.unitpriceDataGridViewTextBoxColumn.Name = "unitpriceDataGridViewTextBoxColumn";
-            // 
-            // discontinuedDataGridViewCheckBoxColumn
-            // 
-            this.discontinuedDataGridViewCheckBoxColumn.DataPropertyName = "discontinued";
-            this.discontinuedDataGridViewCheckBoxColumn.HeaderText = "Discontinued";
-            this.discontinuedDataGridViewCheckBoxColumn.Name = "discontinuedDataGridViewCheckBoxColumn";
-            // 
-            // productsBindingSource1
-            // 
-            this.productsBindingSource1.DataMember = "Products";
             // 
             // lbID
             // 
@@ -296,7 +232,7 @@
             this.cbCate.Size = new System.Drawing.Size(166, 21);
             this.cbCate.TabIndex = 20;
             // 
-            // Form1
+            // FrmProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -319,7 +255,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "FrmProduct";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();

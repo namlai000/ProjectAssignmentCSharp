@@ -15,6 +15,8 @@ namespace Project
         public EmployeesForm empForm = null;
         public FrmOrders orderForm = null;
         public FrmCustomer customerForm = null;
+        public FrmProduct productForm = null;
+        public FrmSupplier supplierForm = null;
 
         public MainProgram()
         {
@@ -60,6 +62,27 @@ namespace Project
             else
             {
                 customerForm.Activate();
+            }
+        }
+
+        private void productsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                productForm = new FrmProduct();
+                productForm.MdiParent = this;
+                productForm.Show();
+        }
+
+        private void suppliersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (supplierForm == null)
+            {
+                supplierForm = new FrmSupplier();
+                supplierForm.MdiParent = this;
+                supplierForm.Show();
+            }
+            else
+            {
+                supplierForm.Activate();
             }
         }
     }

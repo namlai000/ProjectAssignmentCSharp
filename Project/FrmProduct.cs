@@ -12,9 +12,10 @@ namespace Project
 {
     public partial class FrmProduct : Form
     {
-        private TSQLFundamentals2008Entities Entity = new TSQLFundamentals2008Entities();
+        TSQLFundamentals2008Entities Entity = new TSQLFundamentals2008Entities();
         Supplier sp = new Supplier();
         Product pro = new Product();
+
         public FrmProduct()
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'tSQLFundamentals2008DataSet.Products' table. You can move, or remove it, as needed.
+            
         }
         bool validateInput()
         {

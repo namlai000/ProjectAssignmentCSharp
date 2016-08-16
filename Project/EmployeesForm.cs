@@ -202,6 +202,8 @@ namespace Project
 
             if (!txtPhone.MaskCompleted) { errorProvider1.SetError(txtPhone, "Invalid phone"); error = true; }
 
+            if (cbManager.SelectedValue.ToString().Equals(txtId.Text)) { errorProvider1.SetError(cbManager, "You can't manager to this one"); error = true; }
+
             if (error) return false;
             return true;
         }
@@ -281,9 +283,9 @@ namespace Project
             {
                 addData();
                 addNew = false;
+                loadData();
+                InitialButton();
             }
-            loadData();
-            InitialButton();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -311,9 +313,9 @@ namespace Project
                 updateEmployee();
                 addNew = false;
                 update = false;
+                loadData();
+                InitialButton();
             }
-            loadData();
-            InitialButton();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

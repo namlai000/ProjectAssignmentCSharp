@@ -20,23 +20,24 @@ namespace Project
         }
         void loadsup()
         {
-            
-            foreach(Supplier sp in Entity.Suppliers){
-                if (sp.region == null)
-                {
-                    sp.region = "";
-                }
-                if (sp.fax == null)
-                {
-                    sp.fax = "";
-                }
-            }
             dataGridView1.DataSource = Entity.Suppliers.ToList();
-
         }
         void add()
         {
+            Supplier sup = new Supplier();
+            sup.address = txtAddress.Text;
+            sup.city = txtCity.Text;
+            sup.companyname = txtCity.Text;
+            sup.contactname = txtContactName.Text;
+            sup.contacttitle = txtTitle.Text;
+            sup.country = txtTitle.Text;
+            sup.fax = txtFax.Text;
+            sup.phone = mtxtPhone.Text;
+            sup.postalcode = txtPostalCode.Text;
+            sup.region = txtRegion.Text;
             
+
+            Entity.Suppliers.Add(sup);
             Entity.SaveChanges();
         }
         bool validateInput()
@@ -48,60 +49,87 @@ namespace Project
             string address = txtAddress.Text.Trim();
             string region = txtRegion.Text.Trim();
             string code = txtPostalCode.Text.Trim();
-            string phone = txtPhone.Text.Trim();
+            string phone = mtxtPhone.Text.Trim();
             string country = txtCountry.Text.Trim();
             string fax = txtFax.Text.Trim();
             bool bError = false;
             if (name.Length == 0)
             {
+                errorProvider1.SetError(txtName, "Name cannot be empty!");
                 bError = true;
             }
             if (contname.Length == 0)
             {
+                errorProvider1.SetError(txtContactName,"Contact name cannot be empty!");
                 bError = true;
             }
             if (title.Length == 0)
             {
+                errorProvider1.SetError(txtTitle,"Title cannot be empty!");
                 bError = true;
             }
             if (city.Length == 0)
             {
+                errorProvider1.SetError(txtCity,"City cannot be empty!");
                 bError = true;
             }
             if (address.Length == 0)
             {
-                bError = true;
-            }
-            if (region.Length == 0)
-            {
+                errorProvider1.SetError(txtAddress,"Address cannot be empty!");
                 bError = true;
             }
             if (code.Length == 0)
             {
+                errorProvider1.SetError(txtPostalCode,"Postal code cannot be empty!");
                 bError = true;
             }
             if (phone.Length == 0)
             {
+                errorProvider1.SetError(mtxtPhone,"Phone cannot be empty!");
                 bError = true;
             }
             if (country.Length == 0)
             {
+                errorProvider1.SetError(txtCountry,"Country cannot be empty!");
                 bError = true;
             }
-            if (fax.Length == 0)
-            {
-                bError = true;
-            }
+            
             if (bError == true)
             {
                 return false;
-            } else errorProvider1.Clear();
+            }
+            else errorProvider1.Clear();
             return true;
         }
-        
+
         void update()
         {
             DataGridViewRow r = dataGridView1.SelectedRows[0];
+            Supplier sup = null;
+            foreach (Supplier s in Entity.Suppliers)
+            {
+                if (s.supplierid == (int)r.Cells[0].Value)
+                {
+                    sup = s;
+                    break;
+                }
+            }
+            if (sup != null)
+            {
+                
+                sup.address = txtAddress.Text;
+                sup.city = txtCity.Text;
+                sup.companyname = txtName.Text;
+                sup.contactname = txtContactName.Text;
+                sup.contacttitle = txtTitle.Text;
+                sup.country = txtCountry.Text;
+                sup.fax = txtFax.Text;
+                sup.phone = mtxtPhone.Text;
+                sup.postalcode = txtPostalCode.Text;
+                sup.region = txtRegion.Text;
+                Entity.SaveChanges();
+                
+            }
             
         }
 
@@ -109,6 +137,7 @@ namespace Project
         {
             if (validateInput() == false)
             {
+                
                 return;
             }
             else try
@@ -139,10 +168,34 @@ namespace Project
                 txtContactName.Text = r.Cells["contactname"].Value.ToString();
                 txtAddress.Text = r.Cells["address"].Value.ToString();
                 txtCity.Text = r.Cells["city"].Value.ToString();
-                txtFax.Text = r.Cells["fax"].Value.ToString();
-                txtPhone.Text = r.Cells["phone"].Value.ToString();
-                txtPostalCode.Text = r.Cells["postalcode"].Value.ToString();
-                txtRegion.Text = r.Cells["region"].Value.ToString();
+                if (r.Cells["region"].Value == null)
+                {
+                    txtRegion.Text = " ";
+                }
+                else
+                {
+                    txtRegion.Text = r.Cells["region"].Value.ToString();
+                }
+                if (r.Cells["fax"].Value == null)
+                {
+                    txtFax.Text = " ";
+                }
+                else
+                {
+                    txtFax.Text = r.Cells["fax"].Value.ToString();
+                }
+                if (r.Cells["postalcode"].Value == null)
+                {
+                    txtPostalCode.Text = " ";
+                }
+                else
+                {
+                    txtPostalCode.Text = r.Cells["postalcode"].Value.ToString();
+                }
+                //txtFax.Text = r.Cells["fax"].Value.ToString();
+                mtxtPhone.Text = r.Cells["phone"].Value.ToString();
+                //txtPostalCode.Text = r.Cells["postalcode"].Value.ToString();
+                //txtRegion.Text = r.Cells["region"].Value.ToString();
                 txtTitle.Text = r.Cells["contacttitle"].Value.ToString();
                 txtCountry.Text = r.Cells["country"].Value.ToString();
             }
@@ -150,37 +203,40 @@ namespace Project
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (validateInput() == false) return;
-            try
-            {
+            if (validateInput() == false)
+            { return; }
+            
                 update();
+                loadsup();
                 MessageBox.Show("Update Successful!");
-
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            
+            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DataGridViewRow r = dataGridView1.SelectedRows[0];
             Supplier sup = null;
-
-            foreach(Supplier s in Entity.Suppliers)
+            try
             {
-                if (s.supplierid== (int)r.Cells[0].Value)
-
+                foreach (Supplier s in Entity.Suppliers)
                 {
-                    sup = s;
-                    break;
+                    if (s.supplierid == (int)r.Cells[0].Value)
+                    {
+                        sup = s;
+                        break;
+                    }
                 }
+
+                Entity.Suppliers.Remove(sup);
+
+                Entity.SaveChanges();
+            }catch (Exception ){
+                MessageBox.Show("Please delete the corresponding Product first!");
+                Entity.Suppliers.Add(sup);
             }
+            
 
-            Entity.Suppliers.Remove(sup);
-
-            Entity.SaveChanges();
         }
         void SearchByName()
         {
@@ -188,7 +244,7 @@ namespace Project
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 DataGridViewRow r = dataGridView1.Rows[i];
-                if (r.Cells[1].Value.ToString().Contains(txtSearchName.Text))
+                if (r.Cells[1].Value.ToString().Equals(txtSearchName.Text))
                 {
                     frm.addCategoryInfo(r.Cells[0].Value.ToString(),
                         r.Cells[1].Value.ToString(),
@@ -222,18 +278,22 @@ namespace Project
             txtCountry.ResetText();
             txtFax.ResetText();
             txtName.ResetText();
-            txtPhone.ResetText();
+            mtxtPhone.ResetText();
             txtPostalCode.ResetText();
             txtRegion.ResetText();
             txtTitle.ResetText();
             btnDelete.Enabled = false;
             btnUpdate.Enabled = false;
         }
-
-        private void FrmSupplier_FormClosing(object sender, FormClosingEventArgs e)
+        private void txtSearchName_TextChanged(object sender, EventArgs e)
         {
-            MainProgram m = (MainProgram)this.MdiParent;
-            m.supplierForm = null;
+            // dtPro.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", ProductName, txtSearchName.Text);
         }
+
+        private void txtRegion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

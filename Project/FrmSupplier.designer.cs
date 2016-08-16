@@ -49,9 +49,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtFax = new System.Windows.Forms.TextBox();
-            this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtCountry = new System.Windows.Forms.TextBox();
-            this.txtPostalCode = new System.Windows.Forms.TextBox();
             this.txtRegion = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -62,6 +60,8 @@
             this.txtContactName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.mtxtPhone = new System.Windows.Forms.MaskedTextBox();
+            this.txtPostalCode = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -89,11 +89,16 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(290, 38);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(579, 373);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -270,15 +275,6 @@
             this.txtFax.Size = new System.Drawing.Size(143, 20);
             this.txtFax.TabIndex = 32;
             // 
-            // txtPhone
-            // 
-            this.txtPhone.Location = new System.Drawing.Point(135, 240);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtPhone.MaxLength = 24;
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(143, 20);
-            this.txtPhone.TabIndex = 33;
-            // 
             // txtCountry
             // 
             this.txtCountry.Location = new System.Drawing.Point(135, 218);
@@ -288,15 +284,6 @@
             this.txtCountry.Size = new System.Drawing.Size(143, 20);
             this.txtCountry.TabIndex = 34;
             // 
-            // txtPostalCode
-            // 
-            this.txtPostalCode.Location = new System.Drawing.Point(135, 195);
-            this.txtPostalCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtPostalCode.MaxLength = 10;
-            this.txtPostalCode.Name = "txtPostalCode";
-            this.txtPostalCode.Size = new System.Drawing.Size(143, 20);
-            this.txtPostalCode.TabIndex = 35;
-            // 
             // txtRegion
             // 
             this.txtRegion.Location = new System.Drawing.Point(135, 172);
@@ -305,6 +292,7 @@
             this.txtRegion.Name = "txtRegion";
             this.txtRegion.Size = new System.Drawing.Size(143, 20);
             this.txtRegion.TabIndex = 36;
+            this.txtRegion.TextChanged += new System.EventHandler(this.txtRegion_TextChanged);
             // 
             // txtCity
             // 
@@ -390,11 +378,32 @@
             this.label13.TabIndex = 45;
             this.label13.Text = "Contact name";
             // 
+            // mtxtPhone
+            // 
+            this.mtxtPhone.Location = new System.Drawing.Point(135, 240);
+            this.mtxtPhone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mtxtPhone.Mask = "(999) 000-0000";
+            this.mtxtPhone.Name = "mtxtPhone";
+            this.mtxtPhone.Size = new System.Drawing.Size(143, 20);
+            this.mtxtPhone.TabIndex = 46;
+            // 
+            // txtPostalCode
+            // 
+            this.txtPostalCode.Location = new System.Drawing.Point(135, 194);
+            this.txtPostalCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPostalCode.Mask = "00000";
+            this.txtPostalCode.Name = "txtPostalCode";
+            this.txtPostalCode.Size = new System.Drawing.Size(143, 20);
+            this.txtPostalCode.TabIndex = 47;
+            this.txtPostalCode.ValidatingType = typeof(int);
+            // 
             // FrmSupplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(920, 557);
+            this.ClientSize = new System.Drawing.Size(920, 461);
+            this.Controls.Add(this.txtPostalCode);
+            this.Controls.Add(this.mtxtPhone);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtContactName);
             this.Controls.Add(this.label12);
@@ -405,9 +414,7 @@
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtCity);
             this.Controls.Add(this.txtRegion);
-            this.Controls.Add(this.txtPostalCode);
             this.Controls.Add(this.txtCountry);
-            this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.txtFax);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -426,8 +433,7 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FrmSupplier";
-            this.Text = "Categories";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSupplier_FormClosing);
+            this.Text = "Suppliers";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -462,9 +468,7 @@
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.TextBox txtRegion;
-        private System.Windows.Forms.TextBox txtPostalCode;
         private System.Windows.Forms.TextBox txtCountry;
-        private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtFax;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
@@ -472,6 +476,8 @@
         private System.Windows.Forms.TextBox txtContactName;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.MaskedTextBox mtxtPhone;
+        private System.Windows.Forms.MaskedTextBox txtPostalCode;
     }
 }
 

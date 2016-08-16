@@ -93,7 +93,7 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(290, 38);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -106,7 +106,7 @@
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(166, 288);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(94, 19);
             this.btnAdd.TabIndex = 5;
@@ -118,7 +118,7 @@
             // 
             this.btnUpdate.Enabled = false;
             this.btnUpdate.Location = new System.Drawing.Point(166, 319);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(94, 19);
             this.btnUpdate.TabIndex = 6;
@@ -130,7 +130,7 @@
             // 
             this.btnDelete.Enabled = false;
             this.btnDelete.Location = new System.Drawing.Point(31, 319);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(95, 19);
             this.btnDelete.TabIndex = 7;
@@ -141,7 +141,7 @@
             // btnReset
             // 
             this.btnReset.Location = new System.Drawing.Point(31, 288);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(2);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(95, 19);
             this.btnReset.TabIndex = 8;
@@ -169,9 +169,9 @@
             this.groupBox2.Controls.Add(this.txtSearchName);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(31, 343);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(230, 89);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
@@ -180,7 +180,7 @@
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(140, 56);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(56, 19);
             this.btnSearch.TabIndex = 26;
@@ -191,7 +191,7 @@
             // txtSearchName
             // 
             this.txtSearchName.Location = new System.Drawing.Point(104, 26);
-            this.txtSearchName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtSearchName.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchName.Name = "txtSearchName";
             this.txtSearchName.Size = new System.Drawing.Size(97, 20);
             this.txtSearchName.TabIndex = 25;
@@ -269,7 +269,7 @@
             // txtFax
             // 
             this.txtFax.Location = new System.Drawing.Point(135, 263);
-            this.txtFax.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFax.Margin = new System.Windows.Forms.Padding(2);
             this.txtFax.MaxLength = 24;
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(143, 20);
@@ -278,7 +278,7 @@
             // txtCountry
             // 
             this.txtCountry.Location = new System.Drawing.Point(135, 218);
-            this.txtCountry.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCountry.Margin = new System.Windows.Forms.Padding(2);
             this.txtCountry.MaxLength = 15;
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(143, 20);
@@ -287,7 +287,7 @@
             // txtRegion
             // 
             this.txtRegion.Location = new System.Drawing.Point(135, 172);
-            this.txtRegion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRegion.Margin = new System.Windows.Forms.Padding(2);
             this.txtRegion.MaxLength = 15;
             this.txtRegion.Name = "txtRegion";
             this.txtRegion.Size = new System.Drawing.Size(143, 20);
@@ -297,7 +297,7 @@
             // txtCity
             // 
             this.txtCity.Location = new System.Drawing.Point(135, 150);
-            this.txtCity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCity.Margin = new System.Windows.Forms.Padding(2);
             this.txtCity.MaxLength = 15;
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(143, 20);
@@ -306,7 +306,7 @@
             // txtAddress
             // 
             this.txtAddress.Location = new System.Drawing.Point(135, 127);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txtAddress.MaxLength = 60;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(143, 20);
@@ -315,7 +315,7 @@
             // txtTitle
             // 
             this.txtTitle.Location = new System.Drawing.Point(135, 104);
-            this.txtTitle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtTitle.Margin = new System.Windows.Forms.Padding(2);
             this.txtTitle.MaxLength = 30;
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(143, 20);
@@ -324,7 +324,7 @@
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(135, 58);
-            this.txtName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtName.Margin = new System.Windows.Forms.Padding(2);
             this.txtName.MaxLength = 40;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(143, 20);
@@ -353,7 +353,7 @@
             // txtContactName
             // 
             this.txtContactName.Location = new System.Drawing.Point(135, 81);
-            this.txtContactName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtContactName.Margin = new System.Windows.Forms.Padding(2);
             this.txtContactName.MaxLength = 30;
             this.txtContactName.Name = "txtContactName";
             this.txtContactName.Size = new System.Drawing.Size(143, 20);
@@ -381,7 +381,7 @@
             // mtxtPhone
             // 
             this.mtxtPhone.Location = new System.Drawing.Point(135, 240);
-            this.mtxtPhone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mtxtPhone.Margin = new System.Windows.Forms.Padding(2);
             this.mtxtPhone.Mask = "(999) 000-0000";
             this.mtxtPhone.Name = "mtxtPhone";
             this.mtxtPhone.Size = new System.Drawing.Size(143, 20);
@@ -390,7 +390,7 @@
             // txtPostalCode
             // 
             this.txtPostalCode.Location = new System.Drawing.Point(135, 194);
-            this.txtPostalCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPostalCode.Margin = new System.Windows.Forms.Padding(2);
             this.txtPostalCode.Mask = "00000";
             this.txtPostalCode.Name = "txtPostalCode";
             this.txtPostalCode.Size = new System.Drawing.Size(143, 20);
@@ -431,9 +431,10 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmSupplier";
             this.Text = "Suppliers";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSupplier_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox2.ResumeLayout(false);

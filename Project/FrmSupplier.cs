@@ -295,5 +295,10 @@ namespace Project
 
         }
 
+        private void FrmSupplier_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MainProgram m = (MainProgram)this.MdiParent;
+            m.supplierForm = null;
+        }
     }
 }

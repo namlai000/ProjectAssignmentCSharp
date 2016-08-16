@@ -65,6 +65,7 @@ namespace Project
         {
             dataGridView1.DataSource = Entity.Products.ToList();
         }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -121,24 +122,6 @@ namespace Project
                 MessageBox.Show("Delete Successfull");
             }
         }
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                
-                DataGridViewRow r = dataGridView1.SelectedRows[0];
-                cbSupplier.SelectedValue = int.Parse(r.Cells[2].Value.ToString());
-                txtName.Text = r.Cells[1].Value.ToString();
-                cbCate.SelectedValue = int.Parse(r.Cells[3].Value.ToString());
-                txtPrice.Text = r.Cells[4].Value.ToString();
-                if (r.Cells[5].Value.ToString().Equals("True"))
-                {
-                    chkDiscon.Checked = true;
-                }
-                else chkDiscon.Checked = false;
-
-            }
-        }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -167,6 +150,32 @@ namespace Project
             string sql=string.Format("Select * From Production.Products Where productname Like '%{0}%'",txtSearch.Text);
             List<Product> list = Entity.Database.SqlQuery<Product>(sql).ToList();
             dataGridView1.DataSource = list;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+
+                DataGridViewRow r = dataGridView1.SelectedRows[0];
+                lbID.Text = r.Cells[0].Value.ToString();
+                cbSupplier.SelectedValue = int.Parse(r.Cells[2].Value.ToString());
+                txtName.Text = r.Cells[1].Value.ToString();
+                cbCate.SelectedValue = int.Parse(r.Cells[3].Value.ToString());
+                txtPrice.Text = r.Cells[4].Value.ToString();
+                if (r.Cells[5].Value.ToString().Equals("True"))
+                {
+                    chkDiscon.Checked = true;
+                }
+                else chkDiscon.Checked = false;
+
+            }
+        }
+
+        private void FrmProduct_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MainProgram m = (MainProgram)this.MdiParent;
+            m.productForm = null;
         }
     }
 }

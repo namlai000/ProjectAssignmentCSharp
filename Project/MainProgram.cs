@@ -17,6 +17,9 @@ namespace Project
         public FrmCustomer customerForm = null;
         public FrmProduct productForm = null;
         public FrmSupplier supplierForm = null;
+        public CategoryForm catForm = null;
+        public OrderDetailForm orderdetailForm = null;
+        public ShipperForm shipForm = null;
 
         public MainProgram()
         {
@@ -83,6 +86,48 @@ namespace Project
             else
             {
                 supplierForm.Activate();
+            }
+        }
+
+        private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (catForm == null)
+            {
+                catForm = new CategoryForm();
+                catForm.MdiParent = this;
+                catForm.Show();
+            }
+            else
+            {
+                catForm.Activate();
+            }
+        }
+
+        private void ordersDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (orderdetailForm == null)
+            {
+                orderdetailForm = new OrderDetailForm();
+                orderdetailForm.MdiParent = this;
+                orderdetailForm.Show();
+            }
+            else
+            {
+                orderdetailForm.Activate();
+            }
+        }
+
+        private void shippersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (shipForm == null)
+            {
+                shipForm = new ShipperForm();
+                shipForm.MdiParent = this;
+                shipForm.Show();
+            }
+            else
+            {
+                shipForm.Activate();
             }
         }
     }

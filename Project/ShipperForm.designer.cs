@@ -88,11 +88,17 @@
             // 
             // dgvShipper
             // 
+            this.dgvShipper.AllowUserToAddRows = false;
+            this.dgvShipper.AllowUserToDeleteRows = false;
             this.dgvShipper.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvShipper.Location = new System.Drawing.Point(352, 89);
+            this.dgvShipper.MultiSelect = false;
             this.dgvShipper.Name = "dgvShipper";
+            this.dgvShipper.ReadOnly = true;
+            this.dgvShipper.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvShipper.Size = new System.Drawing.Size(668, 324);
             this.dgvShipper.TabIndex = 6;
+            this.dgvShipper.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvShipper_CellClick);
             // 
             // btnAdd
             // 
@@ -122,6 +128,7 @@
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnReset
             // 
@@ -149,9 +156,11 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(311, 20);
             this.txtSearch.TabIndex = 0;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // cbShiperID
             // 
+            this.cbShiperID.Enabled = false;
             this.cbShiperID.FormattingEnabled = true;
             this.cbShiperID.Location = new System.Drawing.Point(131, 32);
             this.cbShiperID.Name = "cbShiperID";

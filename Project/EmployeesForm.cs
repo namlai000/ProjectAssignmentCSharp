@@ -298,12 +298,20 @@ namespace Project
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            deleteEmployee();
-            addNew = false;
-            update = false;
-            loadData();
-            Reset.ResetAllControls(this);
-            InitialButton();
+            try
+            {
+                deleteEmployee();
+                addNew = false;
+                update = false;
+                loadData();
+                Reset.ResetAllControls(this);
+                InitialButton();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("This employee already manager of someone, you can't remove!");
+            }
+           
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)

@@ -130,5 +130,11 @@ namespace Project
         {
             dgvShipper.DataSource = entity.Database.SqlQuery<Shipper>("SELECT * FROM Sales.Shippers WHERE companyname LIKE '%" + txtSearch.Text +"%'").ToList();
         }
+
+        private void ShipperForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MainProgram main = (MainProgram)this.MdiParent;
+            main.shipForm = null;
+        }
     }
 }

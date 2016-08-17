@@ -19,8 +19,6 @@ namespace Project
         public OrderDetailForm()
         {
             InitializeComponent();
-            loadOrderID();
-            loadProductID();
             loadData();
         }
         void loadOrderID()
@@ -38,6 +36,9 @@ namespace Project
             dgvOrderDetails.DataSource = entity.OrderDetails.ToList();
             dgvOrderDetails.Columns["Product"].Visible = false;
             dgvOrderDetails.Columns["Order"].Visible = false;
+
+            loadOrderID();
+            loadProductID();
 
         }
         Boolean ValidateInput()
@@ -113,23 +114,7 @@ namespace Project
             entity.OrderDetails.Add(orderDetail);
             entity.SaveChanges();
         }
-        //void RemoveOrderDetail()
-        //{
-        //    DataGridViewRow r = dgvOrderDetails.SelectedRows[0];
-        //    if (dgvOrderDetails.Rows.Count > 0)
-        //    {
-        //        OrderDetail orderDetail = null;
-        //        foreach (OrderDetail o in entity.OrderDetails)
-        //        {
-        //            if (o.orderid == (int)r.Cells[0].Value)
-        //            {
-        //                orderDetail = 
-        //            }
-        //        }
-
-
-        //    }
-        //}
+        
         void UpdateOrderDetails()
         {
             DataGridViewRow r = dgvOrderDetails.SelectedRows[0];
@@ -182,6 +167,14 @@ namespace Project
             dgvOrderDetails.DataSource = list;
         }
 
-
+        private void dgvOrderDetails_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow r = dgvOrderDetails.SelectedRows[0];
+            cbOrderID.Text = r.Cells[0].Value.ToString();
+            cbProductID.Text = r.Cells[1].Value.ToString();
+            tbUnitPrice.Text = r.Cells[2].Value.ToString();
+            nbQuantity.Value = int.Parse(r.Cells[3].Value.ToString());
+            tbDiscount.Text = r.Cells[4].Value.ToString();
+        }
     }
 }

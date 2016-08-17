@@ -186,6 +186,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ShipperForm";
             this.Text = "ShipperForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShipperForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvShipper)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

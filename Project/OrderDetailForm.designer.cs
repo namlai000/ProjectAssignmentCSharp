@@ -180,11 +180,17 @@
             // 
             // dgvOrderDetails
             // 
+            this.dgvOrderDetails.AllowUserToAddRows = false;
+            this.dgvOrderDetails.AllowUserToDeleteRows = false;
             this.dgvOrderDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrderDetails.Location = new System.Drawing.Point(272, 120);
+            this.dgvOrderDetails.MultiSelect = false;
             this.dgvOrderDetails.Name = "dgvOrderDetails";
+            this.dgvOrderDetails.ReadOnly = true;
+            this.dgvOrderDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvOrderDetails.Size = new System.Drawing.Size(583, 310);
             this.dgvOrderDetails.TabIndex = 15;
+            this.dgvOrderDetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderDetails_CellClick);
             // 
             // groupBox1
             // 

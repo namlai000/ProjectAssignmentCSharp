@@ -203,6 +203,7 @@
             // cbOrderID
             // 
             this.cbOrderID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOrderID.Enabled = false;
             this.cbOrderID.FormattingEnabled = true;
             this.cbOrderID.Location = new System.Drawing.Point(127, 13);
             this.cbOrderID.Name = "cbOrderID";
